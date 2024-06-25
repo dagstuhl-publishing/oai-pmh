@@ -301,8 +301,18 @@ class Provider
         if ($identity->getCompression()) {
             $identityNode->appendChild($this->response->createElement('compression', $identity->getCompression()));
         }
-        if ($identity->getDescription()) {
-            $identityNode->appendChild($this->response->createElement('description', $identity->getDescription()));
+        if (($descriptions = $identity->getDescription()) !== null) {
+            if(!is_array($descriptions)) {
+                $descriptions = [ $descriptions ];
+            }
+            foreach ($descriptions as $description) {
+                if (is_string($description)) {
+                    $dom = new \DOMDocument();
+                    $dom->loadXml($description);
+                    $description = $this->response->getDocument()->importNode($dom->documentElement, true);
+                }
+                $identityNode->appendChild($this->response->createElement('description', $description));
+            }
         }
 
         return $identityNode;

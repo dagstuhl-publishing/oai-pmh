@@ -140,9 +140,16 @@ class ResponseDocument
      */
     public function createElement($name, $value = null)
     {
-        $nameSpace = 'http://www.openarchives.org/OAI/2.0/';
-        $element = $this->document->createElementNS($nameSpace, $name, htmlspecialchars($value, ENT_XML1));
-        return $element;
+        if ($value === null || is_string($value)) {
+            $nameSpace = 'http://www.openarchives.org/OAI/2.0/';
+            $element = $this->document->createElementNS($nameSpace, $name, htmlspecialchars($value, ENT_XML1));
+            return $element;
+        } else {
+            $nameSpace = 'http://www.openarchives.org/OAI/2.0/';
+            $element = $this->document->createElementNS($nameSpace, $name);
+            $element->appendChild($value);
+            return $element;
+        }
     }
 
     /**
