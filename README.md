@@ -1,8 +1,3 @@
-[![Latest Version](https://img.shields.io/packagist/v/picturae/oai-pmh.svg)](https://packagist.org/packages/picturae/oai-pmh)
-[![Build Status](https://travis-ci.org/picturae/OaiPmh.svg?branch=develop)](https://travis-ci.org/picturae/OaiPmh)
-[![Coverage Status](https://coveralls.io/repos/picturae/OaiPmh/badge.svg?service=github)](https://coveralls.io/github/picturae/OaiPmh)
-[![Total Downloads](https://img.shields.io/packagist/dt/picturae/oai-pmh.svg)](https://packagist.org/packages/picturae/oai-pmh)
-
 # Description
 
 Provides an wrapper to produce a OAI-PMH endpoint.
@@ -10,7 +5,7 @@ Provides an wrapper to produce a OAI-PMH endpoint.
 # Repository
 
 To use the OAI-PMH Library it is required to make your own implementation of
-the \Picturae\OaiPmh\Interfaces\Repository interface
+the \Dagstuhl\OaiPmh\Interfaces\Repository interface
 
 Below is an example implementation needs to be modified to return your data
 
@@ -21,18 +16,18 @@ namespace My\Repository;
 
 use DateTime;
 use OpenSkos2\OaiPmh\Concept as OaiConcept;
-use Picturae\OaiPmh\Exception\IdDoesNotExistException;
-use Picturae\OaiPmh\Implementation\MetadataFormatType as ImplementationMetadataFormatType;
-use Picturae\OaiPmh\Implementation\RecordList as OaiRecordList;
-use Picturae\OaiPmh\Implementation\Repository\Identity as ImplementationIdentity;
-use Picturae\OaiPmh\Implementation\Set;
-use Picturae\OaiPmh\Implementation\SetList;
-use Picturae\OaiPmh\Interfaces\MetadataFormatType;
-use Picturae\OaiPmh\Interfaces\Record;
-use Picturae\OaiPmh\Interfaces\RecordList;
-use Picturae\OaiPmh\Interfaces\Repository as InterfaceRepository;
-use Picturae\OaiPmh\Interfaces\Repository\Identity;
-use Picturae\OaiPmh\Interfaces\SetList as InterfaceSetList;
+use Dagstuhl\OaiPmh\Exception\IdDoesNotExistException;
+use Dagstuhl\OaiPmh\Implementation\MetadataFormatType as ImplementationMetadataFormatType;
+use Dagstuhl\OaiPmh\Implementation\RecordList as OaiRecordList;
+use Dagstuhl\OaiPmh\Implementation\Repository\Identity as ImplementationIdentity;
+use Dagstuhl\OaiPmh\Implementation\Set;
+use Dagstuhl\OaiPmh\Implementation\SetList;
+use Dagstuhl\OaiPmh\Interfaces\MetadataFormatType;
+use Dagstuhl\OaiPmh\Interfaces\Record;
+use Dagstuhl\OaiPmh\Interfaces\RecordList;
+use Dagstuhl\OaiPmh\Interfaces\Repository as InterfaceRepository;
+use Dagstuhl\OaiPmh\Interfaces\Repository\Identity;
+use Dagstuhl\OaiPmh\Interfaces\SetList as InterfaceSetList;
 
 class Repository implements InterfaceRepository
 {
@@ -242,12 +237,12 @@ composer require zendframework/zend-diactoros
 ```
 
 ```php
-// Where $repository is an instance of \Picturae\OaiPmh\Interfaces\Repository
+// Where $repository is an instance of \Dagstuhl\OaiPmh\Interfaces\Repository
 $repository = new \Your\Implementation\Repository();
-$provider = new \Picturae\OaiPmh\Provider($repository);
+$provider = new \Dagstuhl\OaiPmh\Provider($repository);
 
 $request = Zend\Diactoros\ServerRequestFactory::fromGlobals();
-$provider = new Picturae\OaiPmh\Provider($repository, $request);
+$provider = new \Dagstuhl\OaiPmh\Provider($repository, $request);
 $response = $provider->getResponse();
 // Send PSR 7 Response
 (new Zend\Diactoros\Response\SapiEmitter())->emit($response);
@@ -257,6 +252,6 @@ $response = $provider->getResponse();
 Values for setSpec must be validated yourself before adding them to the header
 
 ```php
-$header = new \Picturae\OaiPmh\Validator\SetSpecValidator();
+$header = new \Dagstuhl\OaiPmh\Validator\SetSpecValidator();
 $boolean = $header->isValid($value);
 ````

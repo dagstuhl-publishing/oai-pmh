@@ -1,6 +1,6 @@
 {
-  "name": "picturae/oai-pmh",
-  "description": "Picturae OAI-PMH package. Can be used to create a OAI endpoint",
+  "name": "dagstuhl/oai-pmh",
+  "description": "Dagstuhl OAI-PMH package. Can be used to create a OAI endpoint",
   "license": "GPL-3.0-or-later",
   "repositories": [
     {
@@ -10,13 +10,13 @@
   ],
   "authors": [
     {
-      "name": "Picturae",
-      "email": "info@picturae.com"
+      "name": "Yannick Schillo",
+      "email": "yschillo@dagstuhl.de"
     }
   ],
   "autoload": {
     "psr-4": {
-      "Picturae\\OaiPmh\\": "src"
+      "Dagstuhl\\OaiPmh\\": "src"
     }
   },
   "require": {

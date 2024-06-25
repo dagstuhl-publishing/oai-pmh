@@ -1,36 +1,36 @@
 <?php
 
 /*
- * This file is part of Picturae\Oai-Pmh.
+ * This file is part of Dagstuhl\Oai-Pmh.
  *
- * Picturae\Oai-Pmh is free software: you can redistribute it and/or modify
+ * Dagstuhl\Oai-Pmh is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Picturae\Oai-Pmh is distributed in the hope that it will be useful,
+ * Dagstuhl\Oai-Pmh is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Picturae\Oai-Pmh.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Dagstuhl\Oai-Pmh.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 
-namespace Test\Picturae\OaiPmh;
+namespace Test\Dagstuhl\OaiPmh;
 
 use Laminas\Diactoros\ServerRequest;
 use PHPUnit\Framework\TestCase;
-use Picturae\OaiPmh\Exception\BadResumptionTokenException;
-use Picturae\OaiPmh\Exception\IdDoesNotExistException;
-use Picturae\OaiPmh\Implementation\MetadataFormatType;
-use Picturae\OaiPmh\Implementation\Record;
-use Picturae\OaiPmh\Implementation\Record\Header;
-use Picturae\OaiPmh\Implementation\RecordList;
-use Picturae\OaiPmh\Implementation\Repository\Identity;
-use Picturae\OaiPmh\Implementation\Set;
-use Picturae\OaiPmh\Implementation\SetList;
+use Dagstuhl\OaiPmh\Exception\BadResumptionTokenException;
+use Dagstuhl\OaiPmh\Exception\IdDoesNotExistException;
+use Dagstuhl\OaiPmh\Implementation\MetadataFormatType;
+use Dagstuhl\OaiPmh\Implementation\Record;
+use Dagstuhl\OaiPmh\Implementation\Record\Header;
+use Dagstuhl\OaiPmh\Implementation\RecordList;
+use Dagstuhl\OaiPmh\Implementation\Repository\Identity;
+use Dagstuhl\OaiPmh\Implementation\Set;
+use Dagstuhl\OaiPmh\Implementation\SetList;
 use Psr\Http\Message\ResponseInterface;
 
 class ProviderTest extends TestCase
@@ -38,7 +38,7 @@ class ProviderTest extends TestCase
     private function getProvider()
     {
         $mock = $this->getRepo();
-        return new \Picturae\OaiPmh\Provider($mock);
+        return new \Dagstuhl\OaiPmh\Provider($mock);
     }
 
     public function testNoVerb()
@@ -559,7 +559,7 @@ class ProviderTest extends TestCase
      */
     private function getRepo()
     {
-        $mock = $this->getMockBuilder('\Picturae\OaiPmh\Interfaces\Repository')->getMock();
+        $mock = $this->getMockBuilder('\Dagstuhl\OaiPmh\Interfaces\Repository')->getMock();
 
 //        $description = new \DOMDocument();
 //        $description->loadXML('<eprints
@@ -581,9 +581,9 @@ class ProviderTest extends TestCase
                 new Identity(
                     'testRepo',
                     new \DateTime(),
-                    \Picturae\OaiPmh\Interfaces\Repository\Identity::DELETED_RECORD_PERSISTENT,
+                    \Dagstuhl\OaiPmh\Interfaces\Repository\Identity::DELETED_RECORD_PERSISTENT,
                     ["email@example.com"],
-                    \Picturae\OaiPmh\Interfaces\Repository\Identity::GRANULARITY_YYYY_MM_DDTHH_MM_SSZ,
+                    \Dagstuhl\OaiPmh\Interfaces\Repository\Identity::GRANULARITY_YYYY_MM_DDTHH_MM_SSZ,
                     'gzip'
                 )
             )

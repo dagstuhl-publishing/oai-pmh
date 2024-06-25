@@ -1,36 +1,36 @@
 <?php
 
 /*
- * This file is part of Picturae\Oai-Pmh.
+ * This file is part of Dagstuhl\Oai-Pmh.
  *
- * Picturae\Oai-Pmh is free software: you can redistribute it and/or modify
+ * Dagstuhl\Oai-Pmh is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Picturae\Oai-Pmh is distributed in the hope that it will be useful,
+ * Dagstuhl\Oai-Pmh is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Picturae\Oai-Pmh.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Dagstuhl\Oai-Pmh.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 
-namespace Picturae\OaiPmh;
+namespace Dagstuhl\OaiPmh;
 
-use Picturae\OaiPmh\Exception\BadArgumentException;
-use Picturae\OaiPmh\Exception\BadVerbException;
-use Picturae\OaiPmh\Exception\MultipleExceptions;
-use Picturae\OaiPmh\Exception\NoMetadataFormatsException;
-use Picturae\OaiPmh\Exception\NoRecordsMatchException;
-use Picturae\OaiPmh\Exception\NoSetHierarchyException;
-use Picturae\OaiPmh\Exception\CannotDisseminateFormatException;
-use Picturae\OaiPmh\Interfaces\ResultList as ResultListInterface;
-use Picturae\OaiPmh\Interfaces\Repository;
-use Picturae\OaiPmh\Interfaces\Repository\Identity;
-use Picturae\OaiPmh\Interfaces\Record\Header;
+use Dagstuhl\OaiPmh\Exception\BadArgumentException;
+use Dagstuhl\OaiPmh\Exception\BadVerbException;
+use Dagstuhl\OaiPmh\Exception\MultipleExceptions;
+use Dagstuhl\OaiPmh\Exception\NoMetadataFormatsException;
+use Dagstuhl\OaiPmh\Exception\NoRecordsMatchException;
+use Dagstuhl\OaiPmh\Exception\NoSetHierarchyException;
+use Dagstuhl\OaiPmh\Exception\CannotDisseminateFormatException;
+use Dagstuhl\OaiPmh\Interfaces\ResultList as ResultListInterface;
+use Dagstuhl\OaiPmh\Interfaces\Repository;
+use Dagstuhl\OaiPmh\Interfaces\Repository\Identity;
+use Dagstuhl\OaiPmh\Interfaces\Record\Header;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -41,8 +41,8 @@ use Psr\Http\Message\ResponseInterface;
  * <code>
  *
  * //create provider object
- * $provider = new Picturae\OaiPmh\Provider($someRepository);
- * //where some $someRepository is an implementation of \Picturae\OaiPmh\Interfaces\Repository
+ * $provider = new Dagstuhl\OaiPmh\Provider($someRepository);
+ * //where some $someRepository is an implementation of \Dagstuhl\OaiPmh\Interfaces\Repository
  *
  * // add request variables, this could be just $_GET or $_POST in case of a post but can also come from a different
  * // source
@@ -54,7 +54,7 @@ use Psr\Http\Message\ResponseInterface;
  * //output headers, body and then exit (it is possible to do manipulations before outputting but this is not advised.
  * $response->outputAndExit();
  * </code>
- * @package Picturae\OaiPmh
+ * @package Dagstuhl\OaiPmh
  */
 class Provider
 {
