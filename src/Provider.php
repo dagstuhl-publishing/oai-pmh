@@ -139,11 +139,17 @@ class Provider
      * @param \DateTime $time
      * @return string
      */
-    private function toUtcDateTime(\DateTime $time)
+    private function toUtcDateTime(\DateTime $time, string|null $granularity = null)
     {
         $UTC = new \DateTimeZone("UTC");
         $time->setTimezone($UTC);
-        return $time->format('Y-m-d\TH:i:s\Z');
+
+        $granularity = $granularity ?? $this->repository->getGranularity();
+        if($granularity === Identity::GRANULARITY_YYYY_MM_DD) {
+            return $time->format('Y-m-d');
+        } else {
+            return $time->format('Y-m-d\TH:i:s\Z');
+        }
     }
 
     /**
@@ -153,7 +159,7 @@ class Provider
     public function getResponse()
     {
         $this->response = new ResponseDocument();
-        $this->response->addElement("responseDate", $this->toUtcDateTime(new \DateTime()));
+        $this->response->addElement("responseDate", $this->toUtcDateTime(new \DateTime(), Identity::GRANULARITY_YYYY_MM_DDTHH_MM_SSZ));
         $requestNode = $this->response->createElement("request", $this->repository->getBaseUrl());
         $this->response->getDocument()->documentElement->appendChild($requestNode);
 
