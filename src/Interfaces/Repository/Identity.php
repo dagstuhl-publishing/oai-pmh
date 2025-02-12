@@ -89,7 +89,7 @@ interface Identity
     public function getCompression();
 
     /**
-     * @return \DOMDocument|array|null
+     * @return \DOMDocument|\DOMDocument[]|null
      * optional an extensible mechanism for communities to describe their repositories. For
      * example, the description container could be used to include collection-level metadata in the response to the
      * Identify request. Implementation Guidelines are available to give directions with this respect. Each description
